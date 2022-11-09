@@ -33,35 +33,58 @@ const DEFAULT_TIME = 1;
 
 // }
 
+// function update() {
+
+
+//     let minutes = Math.floor(time / 60);
+//     let seconds = time % 60;
+
+//     if (time >= 0) {
+//         minutes = minutes < 10 ? "0" + minutes : minutes
+//         seconds = seconds < 10 ? "0" + seconds : seconds;
+
+//         clockEl.innerHTML = `${minutes}:${seconds}`;
+//     } else {
+//         stopInterval();
+//     }
+//     time--;
+// }
+
+// function showTime() {
+//     clockEl.innerHTML = `${minutes}:${seconds}`;
+// }
+
 let startingMinutes = DEFAULT_TIME;
 let time = startingMinutes * 60;
 
-function update() {
+const clock = {
+    startingMinutes: DEFAULT_TIME,
+    time: startingMinutes * 60,
 
 
-    let minutes = Math.floor(time / 60);
-    let seconds = time % 60;
+    update() {
 
-    if (time >= 0) {
-        minutes = minutes < 10 ? "0" + minutes : minutes
-        seconds = seconds < 10 ? "0" + seconds : seconds;
 
-        clockEl.innerHTML = `${minutes}:${seconds}`;
-    } else {
-        stopInterval();
+        let minutes = Math.floor(time / 60);
+        let seconds = time % 60;
+
+        if (time >= 0) {
+            minutes = minutes < 10 ? "0" + minutes : minutes
+            seconds = seconds < 10 ? "0" + seconds : seconds;
+
+            clockEl.innerHTML = `${minutes}:${seconds}`;
+        } else {
+            stopInterval();
+        }
+        time--;
     }
-    time--;
-}
-
-function showTime() {
-    clockEl.innerHTML = `${minutes}:${seconds}`;
 }
 
 let interval;
 
 function startInterval() {
     if (!interval) {
-        interval = setInterval(update, 1000);
+        interval = setInterval(clock.update, 1000);
     }
 }
 
