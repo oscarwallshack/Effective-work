@@ -16,7 +16,10 @@
 
     <main class="container">
 
-        <h1>Effective Work</h1>
+        <div class="header">
+            <h1>Effective Work</h1>
+            <button id="settings-btn" class="btn">Settings</button>
+        </div>
         <div class="divider"></div>
 
         <section class="pomodoro">
@@ -26,7 +29,7 @@
                 <li class="mode">Long Brake</li>
             </ul>
 
-            <div class="clock"></div>
+            <div class="clock">00:00</div>
             <div class="controll">
                 <button id="start-clock-btn" class="btn">Start</button>
                 <button id="stop-clock-btn" class="btn">Stop</button>
@@ -35,6 +38,28 @@
 
         <section class="to-do-app">
         </section>
+
+        <div class="settings">
+            <div class="settings-body">
+                <div class="header">
+                    <img src="close.svg" alt="" class="close">
+                    <p>Timer settings</p>
+                </div>
+                <p><strong>Time (minutes)</strong></p>
+                <div class="settings-time-row">
+                    <div>
+                        <label for="timer-time">Pomodoro</label>
+                        <input type="number" id="timer-time" name="timer-time" step="1" min="1" value="25">
+                    </div>
+                    <div>
+                        <label for="timer-time">Break</label>
+                        <input type="number" id="timer-time" name="timer-time" step="1" min="1" value="25">
+                    </div>
+                </div>
+                <button class="btn">OK</button>
+            </div>
+        </div>
+
     </main>
 </body>
 

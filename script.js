@@ -2,7 +2,7 @@ const clockEl = document.querySelector('.clock')
 const startClockBtn = document.querySelector('#start-clock-btn')
 const stopClockBtn = document.querySelector('#stop-clock-btn');
 
-const DEFAULT_TIME = 1;
+const DEFAULT_TIME = 0.2;
 
 
 // class Clock {
@@ -63,8 +63,6 @@ const clock = {
 
 
     update() {
-
-
         let minutes = Math.floor(time / 60);
         let seconds = time % 60;
 
