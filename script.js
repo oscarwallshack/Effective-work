@@ -3,7 +3,7 @@ const startClockBtn = document.querySelector('#start-clock-btn')
 const stopClockBtn = document.querySelector('#stop-clock-btn');
 
 const settingsBtn = document.querySelector('#settings-btn')
-const settingsPopup = document.querySelector('.settings')
+const settingsPopupEl = document.querySelector('.settings')
 const closeBtn = document.querySelector('.close');
 
 const DEFAULT_TIME = 0.2;
@@ -32,6 +32,23 @@ const clock = {
     }
 }
 
+const settingsPopUp = {
+
+    show() {
+        settingsPopupEl.style.display = 'block'
+    },
+
+    hide() {
+        settingsPopupEl.style.display = 'none'
+    },
+
+    outsideClick(e) {
+        if (e.target == settingsPopupEl) {
+            settingsPopUp.hide()
+        }
+    }
+}
+
 let interval;
 
 function startInterval() {
@@ -45,24 +62,10 @@ function stopInterval() {
     interval = null;
 }
 
-function hideSettings() {
-    settingsPopup.style.display = 'none'
-}
 
-function showSettings(){
-    settingsPopup.style.display = 'block'
-}
-
-function outsideClick(e) {
-    if(e.target == settingsPopup){
-        hideSettings()
-    }
-}
-
-
-settingsBtn.addEventListener('click', showSettings)
-closeBtn.addEventListener('click', hideSettings)
-window.addEventListener('click', outsideClick)
+settingsBtn.addEventListener('click', settingsPopUp.show)
+closeBtn.addEventListener('click', settingsPopUp.hide)
+window.addEventListener('click', settingsPopUp.outsideClick)
 
 startClockBtn.addEventListener('click', startInterval);
 stopClockBtn.addEventListener('click', stopInterval)
