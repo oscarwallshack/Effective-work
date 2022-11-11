@@ -174,3 +174,13 @@ ul{
     background: #fff;
     color: #5B6D5B;
 }
+
+.pomodoro .controll .btn:hover{
+    
+}
+
+.pomodoro .controll .btn:active {
+    background: rgb(145, 145, 145);
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+  }
