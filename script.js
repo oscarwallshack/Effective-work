@@ -12,7 +12,7 @@ const giventimerTime = document.querySelector('#timer-time');
 const startingMinutes = parseInt(clockEl.textContent);
 let time = startingMinutes * 60;
 
-const clock = {
+const timer = {
     update() {
         let minutes = Math.floor(time / 60);
         let seconds = time % 60;
@@ -57,7 +57,7 @@ const settingsPopUp = {
 let interval;
 function startInterval() {
     if (!interval) {
-        interval = setInterval(clock.update, 1000);
+        interval = setInterval(timer.update, 1000);
     }
 }
 function stopInterval() {
@@ -70,7 +70,7 @@ function stopInterval() {
 openSettingsBtn.addEventListener('click', settingsPopUp.show);
 closeBtn.addEventListener('click', settingsPopUp.hide);
 window.addEventListener('click', settingsPopUp.outsideClick);
-submitSettingsBtn.addEventListener('click', clock.set);
+submitSettingsBtn.addEventListener('click', timer.set);
 startClockBtn.addEventListener('click', startInterval);
 stopClockBtn.addEventListener('click', stopInterval);
 
