@@ -6,11 +6,14 @@ const openSettingsBtn = document.querySelector('#settings-btn');
 const settingsPopupEl = document.querySelector('.settings');
 const closeBtn = document.querySelector('.close');
 const submitSettingsBtn = document.querySelector('#submit-settings');
-const breakTime = document.querySelector('#break-time');
 
-const giventimerTime = document.querySelector('#timer-time');
+const settingsBreakTime = document.querySelector('#break-time');
+const settingsPomodoroTime = document.querySelector('#timer-time');
+
+const pomodoroMode = document.querySelector('#pomodoroMode');
+const breakMode = document.querySelector('#breakMode');
+
 const startingMinutes = parseInt(clockEl.textContent);
-let time = startingMinutes * 60;
 
 const timer = {
     update() {
@@ -29,10 +32,19 @@ const timer = {
     },
 
     set() {
-        timerTime = giventimerTime.value < 10 ? "0" + giventimerTime.value : giventimerTime.value;
+        timerTime = settingsPomodoroTime.value < 10 ? "0" + settingsPomodoroTime.value : settingsPomodoroTime.value;
         clockEl.innerHTML = `${timerTime}:00`;
         settingsPopUp.hide();
         time = timerTime * 60;
+    },
+
+    changeMode(mode) {
+        if (mode.name === "pomodoro") {
+            time = settingsPomodoroTime.value * 60;
+        } else if (mode.name === "break") {
+            time = settingsBreakTime.value * 60;
+        }
+        timer.update();
     }
 }
 
@@ -50,8 +62,6 @@ const settingsPopUp = {
             settingsPopUp.hide();
         }
     },
-
-
 }
 
 let interval;
@@ -65,7 +75,10 @@ function stopInterval() {
     interval = null;
 }
 
+let time = startingMinutes * 60;
 
+pomodoroMode.addEventListener('click', function () { timer.changeMode(pomodoroMode) });
+breakMode.addEventListener('click', function () { timer.changeMode(breakMode) });
 
 openSettingsBtn.addEventListener('click', settingsPopUp.show);
 closeBtn.addEventListener('click', settingsPopUp.hide);
