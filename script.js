@@ -77,8 +77,16 @@ function stopInterval() {
 
 let time = startingMinutes * 60;
 
-pomodoroMode.addEventListener('click', function () { timer.changeMode(pomodoroMode) });
-breakMode.addEventListener('click', function () { timer.changeMode(breakMode) });
+pomodoroMode.addEventListener('click', function () {
+    breakMode.classList.remove('active');
+    pomodoroMode.classList.add('active');
+    timer.changeMode(pomodoroMode);
+});
+breakMode.addEventListener('click', function () {
+    pomodoroMode.classList.remove('active');
+    breakMode.classList.add('active');
+    timer.changeMode(pomodoroMode); timer.changeMode(breakMode)
+});
 
 openSettingsBtn.addEventListener('click', settingsPopUp.show);
 closeBtn.addEventListener('click', settingsPopUp.hide);
