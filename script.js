@@ -4,7 +4,7 @@ const stopClockBtn = document.querySelector('#stop-clock-btn');
 
 const openSettingsBtn = document.querySelector('#settings-btn');
 const settingsPopupEl = document.querySelector('.settings');
-const closeBtn = document.querySelector('.close');
+const closeSettingsBtn = document.querySelector('#close-settings');
 const submitSettingsBtn = document.querySelector('#submit-settings');
 
 const settingsBreakTime = document.querySelector('#break-time');
@@ -89,9 +89,29 @@ breakMode.addEventListener('click', function () {
 });
 
 openSettingsBtn.addEventListener('click', settingsPopUp.show);
-closeBtn.addEventListener('click', settingsPopUp.hide);
+closeSettingsBtn.addEventListener('click', settingsPopUp.hide);
 window.addEventListener('click', settingsPopUp.outsideClick);
 submitSettingsBtn.addEventListener('click', timer.set);
 startClockBtn.addEventListener('click', startInterval);
 stopClockBtn.addEventListener('click', stopInterval);
 
+// Todo section
+
+const addTaskArea = document.querySelector('.add_task_area');
+const taskPanel = document.querySelector('.task_panel');
+const closeTaskPanel = document.querySelector('#close-task-area');
+
+
+const todo = {
+
+    showPanel() {
+        taskPanel.style.display = 'block';
+    },
+
+    hidePanel() {
+        taskPanel.style.display = 'none';
+    }
+}
+
+addTaskArea.addEventListener('click', todo.showPanel)
+closeTaskPanel.addEventListener('click', todo.hidePanel)

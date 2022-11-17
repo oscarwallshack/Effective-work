@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="style.css">
 
     <script src="script.js" defer></script>
-    <title>Pomodoro</title>
+    <title>Effective Work</title>
 </head>
 
 <body>
@@ -20,6 +20,7 @@
             <h1>Pomodoro</h1>
             <button id="settings-btn" class="btn">Settings</button>
         </div>
+
         <section class="pomodoro">
             <div class="modes">
                 <button name="pomodoro" id="pomodoroMode" class="mode active">Pomodoro</button>
@@ -33,13 +34,10 @@
             </div>
         </section>
 
-        <section class="to-do-app">
-        </section>
-
         <div class="settings">
             <div class="settings-body">
                 <div class="header">
-                    <img src="close.svg" alt="" class="close">
+                    <img src="close.svg" alt="" class="close" id="close-settings">
                     <p>Timer settings</p>
                 </div>
                 <p><strong>Time (minutes)</strong></p>
@@ -57,6 +55,21 @@
             </div>
         </div>
 
+        <section class="todo_container">
+            <p>Time to focus!</p>
+            <h2>Tasks</h2>
+            <ul id="todos" class="todos"></ul>
+            <div class="task_panel">
+                <input id="todo_content" type="text" placeholder="What are you working on?">
+                <button class="btn">Add Task</button>
+                <img class="close" src="close.svg" alt="" id="close-task-area">
+            </div>
+            <div class="add_task_area">
+                 <img src="/plus.png" alt="" srcset=""> Add Task
+            </div>
+        </section>
+
+        
     </main>
 </body>
 
