@@ -97,12 +97,23 @@ stopClockBtn.addEventListener('click', stopInterval);
 
 // Todo section
 
+const todoUl = document.querySelector('#todos')
 const addTaskArea = document.querySelector('.add_task_area');
 const taskPanel = document.querySelector('.task_panel');
+
 const closeTaskPanel = document.querySelector('#close-task-area');
+const todoContent = document.querySelector('#todo-content')
+const addTaskBtn = document.querySelector('#add-task');
 
 
 const todo = {
+
+    add(todoContent) {
+        const node = document.createElement("li");
+        const textnode = document.createTextNode(`${todoContent}`);
+        node.appendChild(textnode);
+        todoUl.appendChild(node);
+    },
 
     showPanel() {
         taskPanel.style.display = 'block';
@@ -115,3 +126,7 @@ const todo = {
 
 addTaskArea.addEventListener('click', todo.showPanel)
 closeTaskPanel.addEventListener('click', todo.hidePanel)
+addTaskBtn.addEventListener('click', function(){
+    todo.add(todoContent.value);
+    todoContent.value = '';
+})
