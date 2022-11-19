@@ -22,16 +22,12 @@ a:hover{
     color: #F4F4F4;
 }
 
-ul{
-    list-style: none;
-}
-
 .close{
-        position: absolute;
-        height: 23px;
-        width: 23px;
-        right: 15px;
-        cursor: pointer;
+     position: absolute;
+     height: 23px;
+     width: 23px;
+     right: 15px;
+     cursor: pointer;
     
 }
 
@@ -230,7 +226,7 @@ ul{
     padding-bottom: 10px;
   }
 
-  .todo_container .add_task_area{
+  .todo_container .add_todo_area{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -245,23 +241,23 @@ ul{
     cursor: pointer;
   }
 
-  .todo_container .add_task_area img{
+  .todo_container .add_todo_area img{
     height: 23px;
     width: 23px;
   }
 
-  .todo_container .add_task_area:hover{
+  .todo_container .add_todo_area:hover{
     opacity: 0.9;
   }
 
-  .todo_container .task_panel{
+  .todo_container .todo_panel{
     display: none;
     position: relative;
     background: #fff;
     padding: 10px;
   }
   
-  .todo_container .task_panel input{
+  .todo_container .todo_panel input{
     width: 100%;
     height: 60px;
     border: none;
@@ -271,11 +267,11 @@ ul{
     font-size: 20px;
   }
 
-  .todo_container .todos li{
+  .todo_container .todos div{
     background: #fff;
-    color: #0d0e0d;
-    height: 60px;
+    color: #5B6D5B;
+    height: 70px;
     margin: 5px 0 5px 0;
-    padding: 10px 10px;
+    padding-top: 25px;
     text-align: center;
   }
