@@ -98,39 +98,77 @@ stopClockBtn.addEventListener('click', stopInterval);
 // Todo section
 
 const todoUl = document.querySelector('#todos')
-const addTaskArea = document.querySelector('.add_todo_area');
-const taskPanel = document.querySelector('.todo_panel');
+const addTodoArea = document.querySelector('.add_todo_area');
+const todoPanelEl = document.querySelector('.todo_panel');
 
-const closeTaskPanel = document.querySelector('#close_todo_panel');
-const todoContent = document.querySelector('#todo_content')
-const addTaskBtn = document.querySelector('#add_todo');
+const closetodoPanel = document.querySelector('#close_todo_panel');
+const inputTodo = document.querySelector('#input_todo')
+const addTodoBtn = document.querySelector('#add_todo');
+
+const todos = JSON.parse(localStorage.getItem('todos'));
+
+const todoPanel = {
 
 
-const todo = {
-
-    add(todoContent) {
-        const node = document.createElement("div");
-        const textnode = document.createTextNode(`${todoContent}`);
-        node.appendChild(textnode);
-        todoUl.appendChild(node);
+    show() {
+        todoPanelEl.style.display = 'block';
     },
 
-    showPanel() {
-        taskPanel.style.display = 'block';
-    },
-
-    hidePanel() {
-        taskPanel.style.display = 'none';
+    hide() {
+        todoPanelEl.style.display = 'none';
     }
 }
 
-addTaskArea.addEventListener('click', todo.showPanel)
-closeTaskPanel.addEventListener('click', todo.hidePanel)
-addTaskBtn.addEventListener('click', function () {
-    if (!todoContent.velue && todoContent.value != '') {
-        todo.add(todoContent.value);
-        todoContent.value = '';
-    } else {
-        todoContent.placeholder = 'Enter content!';
+// add(inputTodo) {
+//     const node = document.createElement("div");
+//     const textnode = document.createTextNode(`${inputTodo}`);
+//     node.appendChild(textnode);
+//     todoUl.appendChild(node);
+// },
+
+function checkLS() {
+
+    if (todos) {
+        let todoArr = todos.JSON.parse();
     }
-})
+
+}
+
+function addTodo(todo) {
+    window.localStorage.setItem('todos', JSON.stringify(todo));
+
+}
+
+
+addTodoArea.addEventListener('click', todoPanel.show)
+closetodoPanel.addEventListener('click', todoPanel.hide)
+addTodoBtn.addEventListener('click', function () {
+    console.log(inputTodo.value);
+    if (inputTodo.value && inputTodo.value != '') {
+        console.log('sisi');
+
+        let todo = {
+            content: inputTodo.value,
+            completed: ''
+        }
+
+
+        todoArr.push(todo)
+
+        addTodo(todoArr);
+        inputTodo.value = '';
+    } else {
+        console.log('nope');
+
+        inputTodo.placeholder = 'Enter content!';
+    }
+});
+
+// addTodoBtn.addEventListener('click', function () {
+//     if (!inputTodo.velue && inputTodo.value != '') {
+//         todo.add(inputTodo.value);
+//         inputTodo.value = '';
+//     } else {
+//         inputTodo.placeholder = 'Enter content!';
+//     }
+// })

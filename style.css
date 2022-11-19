@@ -255,6 +255,7 @@ a:hover{
     position: relative;
     background: #fff;
     padding: 10px;
+    margin: 10px 0 10px 0;
   }
   
   .todo_container .todo_panel input{
