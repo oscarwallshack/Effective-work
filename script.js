@@ -106,10 +106,9 @@ const inputTodo = document.querySelector('#input_todo')
 const addTodoBtn = document.querySelector('#add_todo');
 
 const todos = JSON.parse(localStorage.getItem('todos'));
+let todoArr = []
 
-
-
-const todoPanel = {
+const TodoPanel = {
     show() {
         todoPanelEl.style.display = 'block';
     },
@@ -118,74 +117,63 @@ const todoPanel = {
     }
 }
 
-let todoArr = []
+const Todo = {
+
+    add(text) {
+        let todo = {
+            content: text
+        }
+        todoArr.push(todo)
+
+        window.localStorage.setItem('todos', JSON.stringify(todoArr));
+        this.updateDOM();
+    },
+
+    delete(id) {
+        todoArr.splice(id, 1)
+        this.updateLS()
+    },
+
+    updateLS() {
+        window.localStorage.setItem('todos', JSON.stringify(todoArr));
+        this.updateDOM();
+
+    },
+
+    updateDOM() {
+        if (todoUl.hasChildNodes()) {
+            todoUl.replaceChildren();
+        }
+        todoArr.forEach(element => {
+            const node = document.createElement("div");
+            const textnode = document.createTextNode(`${element.content}`);
+            node.appendChild(textnode);
+            todoUl.appendChild(node);
+        })
+    }
+
+}
 
 if (todos) {
     todos.forEach(element => {
         todoArr.push(element)
     });
-    update(todos);
-}
-
-function updateLS(){
-    window.localStorage.setItem('todos', JSON.stringify(todoArr));
-
-}
-
-function addTodo(todo) {
-    window.localStorage.setItem('todos', JSON.stringify(todo));
-    update();
-}
-
-function deleteTodo(id) {
-    todoArr.splice(id, 1)
-    updateLS()
-    console.log(todoArr);
-    update();
-}
-
-
-function update() {
-    if (todoUl.hasChildNodes()) {
-        todoUl.replaceChildren();
-    }
-    todoArr.forEach(element => {
-        const node = document.createElement("div");
-        const textnode = document.createTextNode(`${element.content}`);
-        node.appendChild(textnode);
-        todoUl.appendChild(node);
-    })
+    Todo.updateDOM(todos);
 }
 
 todoUl.addEventListener('click', function (e) {
     let todo = todoArr.find(element => element.content == e.target.textContent);
     todoId = todoArr.indexOf(todo)
-    console.log(todoId);
-    deleteTodo(todoId)
+    Todo.delete(todoId)
 });
 
-addTodoArea.addEventListener('click', todoPanel.show)
-closetodoPanel.addEventListener('click', todoPanel.hide)
+addTodoArea.addEventListener('click', TodoPanel.show)
+closetodoPanel.addEventListener('click', TodoPanel.hide)
 addTodoBtn.addEventListener('click', function () {
     if (inputTodo.value && inputTodo.value != '') {
-        let todo = {
-            content: inputTodo.value,
-            completed: ''
-        }
-        todoArr.push(todo)
-
-        addTodo(todoArr);
+        Todo.add(inputTodo.value)
         inputTodo.value = '';
     } else {
         inputTodo.placeholder = 'Enter content!';
     }
 });
-
-// addTodoBtn.addEventListener('click', function () {
-//     if (!inputTodo.velue && inputTodo.value != '') {
-//         todo.add(inputTodo.value);
-//         inputTodo.value = '';
-//     } else {
-//         inputTodo.placeholder = 'Enter content!';
-//     }
-// })
