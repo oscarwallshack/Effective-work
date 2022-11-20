@@ -106,7 +106,7 @@ const inputTodo = document.querySelector('#input_todo')
 const addTodoBtn = document.querySelector('#add_todo');
 
 const todos = JSON.parse(localStorage.getItem('todos'));
-let todoArr = []
+const todoArr = []
 
 const TodoPanel = {
     show() {
