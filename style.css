@@ -275,4 +275,5 @@ a:hover{
     margin: 5px 0 5px 0;
     padding-top: 25px;
     text-align: center;
+    cursor: pointer;
   }

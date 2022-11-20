@@ -126,40 +126,46 @@ const todoPanel = {
 //     todoUl.appendChild(node);
 // },
 
-function checkLS() {
+let todoArr = []
 
-    if (todos) {
-        let todoArr = todos.JSON.parse();
-    }
-
+if (todos) {
+    todos.forEach(element => {
+        todoArr.push(element)
+    });
+    update(todos);
 }
 
 function addTodo(todo) {
     window.localStorage.setItem('todos', JSON.stringify(todo));
+    update();
+}
 
+function update() {
+    if (todoUl.hasChildNodes()) {
+        todoUl.replaceChildren();
+    }
+    todoArr.forEach(element => {
+        const node = document.createElement("div");
+        const textnode = document.createTextNode(`${element.content}`);
+        node.appendChild(textnode);
+        todoUl.appendChild(node);
+    })
 }
 
 
 addTodoArea.addEventListener('click', todoPanel.show)
 closetodoPanel.addEventListener('click', todoPanel.hide)
 addTodoBtn.addEventListener('click', function () {
-    console.log(inputTodo.value);
     if (inputTodo.value && inputTodo.value != '') {
-        console.log('sisi');
-
         let todo = {
             content: inputTodo.value,
             completed: ''
         }
-
-
         todoArr.push(todo)
 
         addTodo(todoArr);
         inputTodo.value = '';
     } else {
-        console.log('nope');
-
         inputTodo.placeholder = 'Enter content!';
     }
 });
