@@ -107,24 +107,16 @@ const addTodoBtn = document.querySelector('#add_todo');
 
 const todos = JSON.parse(localStorage.getItem('todos'));
 
+
+
 const todoPanel = {
-
-
     show() {
         todoPanelEl.style.display = 'block';
     },
-
     hide() {
         todoPanelEl.style.display = 'none';
     }
 }
-
-// add(inputTodo) {
-//     const node = document.createElement("div");
-//     const textnode = document.createTextNode(`${inputTodo}`);
-//     node.appendChild(textnode);
-//     todoUl.appendChild(node);
-// },
 
 let todoArr = []
 
@@ -135,10 +127,23 @@ if (todos) {
     update(todos);
 }
 
+function updateLS(){
+    window.localStorage.setItem('todos', JSON.stringify(todoArr));
+
+}
+
 function addTodo(todo) {
     window.localStorage.setItem('todos', JSON.stringify(todo));
     update();
 }
+
+function deleteTodo(id) {
+    todoArr.splice(id, 1)
+    updateLS()
+    console.log(todoArr);
+    update();
+}
+
 
 function update() {
     if (todoUl.hasChildNodes()) {
@@ -152,6 +157,12 @@ function update() {
     })
 }
 
+todoUl.addEventListener('click', function (e) {
+    let todo = todoArr.find(element => element.content == e.target.textContent);
+    todoId = todoArr.indexOf(todo)
+    console.log(todoId);
+    deleteTodo(todoId)
+});
 
 addTodoArea.addEventListener('click', todoPanel.show)
 closetodoPanel.addEventListener('click', todoPanel.hide)
