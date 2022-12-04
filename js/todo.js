@@ -1,13 +1,13 @@
-const todoUl = document.querySelector('#todos')
+const todoUl = document.querySelector('#todos');
 const todoPanelEl = document.querySelector('.todo_panel');
 export const addTodoArea = document.querySelector('.add_todo_area');
 
 export const closetodoPanel = document.querySelector('#close_todo_panel');
-export const inputTodo = document.querySelector('#input_todo')
+export const inputTodo = document.querySelector('#input_todo');
 export const addTodoBtn = document.querySelector('#add_todo');
 
 const todos = JSON.parse(localStorage.getItem('todos'));
-const todoArr = []
+const todoArr = [];
 
 export const TodoPanel = {
     show() {
