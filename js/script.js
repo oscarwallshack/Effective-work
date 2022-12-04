@@ -97,75 +97,8 @@ stopClockBtn.addEventListener('click', stopInterval);
 
 // Todo section
 
-const todoUl = document.querySelector('#todos')
-const addTodoArea = document.querySelector('.add_todo_area');
-const todoPanelEl = document.querySelector('.todo_panel');
+import { addTodoArea, closetodoPanel, inputTodo, addTodoBtn,  TodoPanel, Todo} from './todo.js';
 
-const closetodoPanel = document.querySelector('#close_todo_panel');
-const inputTodo = document.querySelector('#input_todo')
-const addTodoBtn = document.querySelector('#add_todo');
-
-const todos = JSON.parse(localStorage.getItem('todos'));
-const todoArr = []
-
-const TodoPanel = {
-    show() {
-        todoPanelEl.style.display = 'block';
-    },
-    hide() {
-        todoPanelEl.style.display = 'none';
-    }
-}
-
-const Todo = {
-
-    add(text) {
-        let todo = {
-            content: text
-        }
-        todoArr.push(todo)
-
-        window.localStorage.setItem('todos', JSON.stringify(todoArr));
-        this.updateDOM();
-    },
-
-    delete(id) {
-        todoArr.splice(id, 1)
-        this.updateLS()
-    },
-
-    updateLS() {
-        window.localStorage.setItem('todos', JSON.stringify(todoArr));
-        this.updateDOM();
-
-    },
-
-    updateDOM() {
-        if (todoUl.hasChildNodes()) {
-            todoUl.replaceChildren();
-        }
-        todoArr.forEach(element => {
-            const node = document.createElement("div");
-            const textnode = document.createTextNode(`${element.content}`);
-            node.appendChild(textnode);
-            todoUl.appendChild(node);
-        })
-    }
-
-}
-
-if (todos) {
-    todos.forEach(element => {
-        todoArr.push(element)
-    });
-    Todo.updateDOM(todos);
-}
-
-todoUl.addEventListener('click', function (e) {
-    let todo = todoArr.find(element => element.content == e.target.textContent);
-    todoId = todoArr.indexOf(todo)
-    Todo.delete(todoId)
-});
 
 addTodoArea.addEventListener('click', TodoPanel.show)
 closetodoPanel.addEventListener('click', TodoPanel.hide)
