@@ -1,99 +1,23 @@
-const clockEl = document.querySelector('.clock');
-const startClockBtn = document.querySelector('#start-clock-btn');
-const stopClockBtn = document.querySelector('#stop-clock-btn');
+import * as pomodoro from './pomodoro.js';
 
-const openSettingsBtn = document.querySelector('#settings-btn');
-const settingsPopupEl = document.querySelector('.settings');
-const closeSettingsBtn = document.querySelector('#close-settings');
-const submitSettingsBtn = document.querySelector('#submit-settings');
 
-const settingsBreakTime = document.querySelector('#break-time');
-const settingsPomodoroTime = document.querySelector('#timer-time');
-
-const pomodoroMode = document.querySelector('#pomodoroMode');
-const breakMode = document.querySelector('#breakMode');
-
-const startingMinutes = parseInt(clockEl.textContent);
-
-const timer = {
-    update() {
-        let minutes = Math.floor(time / 60);
-        let seconds = time % 60;
-
-        if (time >= 0) {
-            minutes = minutes < 10 ? "0" + minutes : minutes;
-            seconds = seconds < 10 ? "0" + seconds : seconds;
-
-            clockEl.innerHTML = `${minutes}:${seconds}`;
-        } else {
-            stopInterval();
-        }
-        time--;
-    },
-
-    set() {
-        timerTime = settingsPomodoroTime.value < 10 ? "0" + settingsPomodoroTime.value : settingsPomodoroTime.value;
-        clockEl.innerHTML = `${timerTime}:00`;
-        settingsPopUp.hide();
-        time = timerTime * 60;
-    },
-
-    changeMode(mode) {
-        if (mode.name === "pomodoro") {
-            time = settingsPomodoroTime.value * 60;
-        } else if (mode.name === "break") {
-            time = settingsBreakTime.value * 60;
-        }
-        timer.update();
-    }
-}
-
-const settingsPopUp = {
-    show() {
-        settingsPopupEl.style.display = 'block';
-    },
-
-    hide() {
-        settingsPopupEl.style.display = 'none';
-    },
-
-    outsideClick(e) {
-        if (e.target == settingsPopupEl) {
-            settingsPopUp.hide();
-        }
-    },
-}
-
-let interval;
-function startInterval() {
-    if (!interval) {
-        interval = setInterval(timer.update, 1000);
-    }
-}
-function stopInterval() {
-    clearInterval(interval);
-    interval = null;
-}
-
-let time = startingMinutes * 60;
-
-pomodoroMode.addEventListener('click', function () {
-    breakMode.classList.remove('active');
-    pomodoroMode.classList.add('active');
-    timer.changeMode(pomodoroMode);
+pomodoro.pomodoroMode.addEventListener('click', function () {
+    pomodoro.breakMode.classList.remove('active');
+    pomodoro.pomodoroMode.classList.add('active');
+    pomodoro.timer.changeMode(pomodoroMode);
 });
-breakMode.addEventListener('click', function () {
-    pomodoroMode.classList.remove('active');
-    breakMode.classList.add('active');
-    timer.changeMode(pomodoroMode); timer.changeMode(breakMode)
+pomodoro.breakMode.addEventListener('click', function () {
+    pomodoro.pomodoroMode.classList.remove('active');
+    pomodoro.breakMode.classList.add('active');
+    pomodoro.timer.changeMode(pomodoroMode); pomodoro.timer.changeMode(breakMode)
 });
 
-openSettingsBtn.addEventListener('click', settingsPopUp.show);
-closeSettingsBtn.addEventListener('click', settingsPopUp.hide);
-window.addEventListener('click', settingsPopUp.outsideClick);
-submitSettingsBtn.addEventListener('click', timer.set);
-startClockBtn.addEventListener('click', startInterval);
-stopClockBtn.addEventListener('click', stopInterval);
+pomodoro.openSettingsBtn.addEventListener('click', pomodoro.settingsPopUp.show);
+pomodoro.closeSettingsBtn.addEventListener('click', pomodoro.settingsPopUp.hide);
+window.addEventListener('click', pomodoro.settingsPopUp.outsideClick);
+pomodoro.submitSettingsBtn.addEventListener('click', pomodoro.timer.set);
+pomodoro.startClockBtn.addEventListener('click', pomodoro.startInterval);
+pomodoro.stopClockBtn.addEventListener('click', pomodoro.stopInterval);
 
 // Todo section
 
