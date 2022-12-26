@@ -14,10 +14,14 @@ export const pomodoroMode = document.querySelector("#pomodoroMode");
 export const breakMode = document.querySelector("#breakMode");
 
 const LSPomodoro = JSON.parse(localStorage.getItem("pomodoroTime"));
-let startingMinutes = 0;
+
+const times = {
+  pomodoroTime: settingsPomodoroTime.value,
+  pomodoroBreakTime: settingsBreakTime.value,
+};
 
 if (!LSPomodoro) {
-  startingMinutes = window.localStorage.setItem("pomodoroTime", 25 * 60);
+  startingMinutes = window.localStorage.setItem("pomodoro", JSON.stringify(times));
 } else {
   startingMinutes = LSPomodoro * 60;
   clockEl.innerHTML = `${LSPomodoro}:00`;
@@ -40,17 +44,6 @@ export const timer = {
     }
     time--;
   },
-
-  //   set() {
-  //     let timerTime =
-  //       settingsPomodoroTime.value < 10
-  //         ? "0" + settingsPomodoroTime.value
-  //         : settingsPomodoroTime.value;
-  //     clockEl.innerHTML = `${timerTime}:00`;
-  //     settingsPopUp.hide();
-  //     time = timerTime * 60;
-  //     window.localStorage.setItem("pomodoroTime", time);
-  //   },
 
   set() {
     let timerTime =

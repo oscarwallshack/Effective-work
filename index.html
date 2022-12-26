@@ -1,77 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="robots" content="noindex">
-    <link rel="stylesheet" href="style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex" />
+    <link rel="stylesheet" href="style.css" />
 
     <script src="./js/script.js" type="module" defer></script>
     <title>Effective Work</title>
-</head>
+  </head>
 
-<body>
-
+  <body>
     <main class="container">
+      <div class="header">
+        <h1>Pomodoro</h1>
+        <button id="settings-btn" class="btn">Settings</button>
+      </div>
 
-        <div class="header">
-            <h1>Pomodoro</h1>
-            <button id="settings-btn" class="btn">Settings</button>
+      <section class="pomodoro">
+        <div class="modes">
+          <button name="pomodoro" id="pomodoroMode" class="mode active">
+            Pomodoro
+          </button>
+          <button name="break" id="breakMode" class="mode">Break Time</button>
         </div>
 
-        <section class="pomodoro">
-            <div class="modes">
-                <button name="pomodoro" id="pomodoroMode" class="mode active">Pomodoro</button>
-                <button name="break" id="breakMode" class="mode">Break Time</button>
-            </div>
-
-            <div class="clock">25:00</div>
-            <div class="controll">
-                <button id="start-clock-btn" class="btn">Start</button>
-                <button id="stop-clock-btn" class="btn">Stop</button>
-            </div>
-        </section>
-
-        <div class="settings">
-            <div class="settings-body">
-                <div class="header">
-                    <img src="close.svg" alt="" class="close" id="close-settings">
-                    <p>Timer settings</p>
-                </div>
-                <p><strong>Time (minutes)</strong></p>
-                <div class="settings-time-row">
-                    <div>
-                        <label for="timer-time">Pomodoro</label>
-                        <input type="number" id="timer-time" name="timer-time" step="1" min="1" value="25">
-                    </div>
-                    <div>
-                        <label for="break-time">Break</label>
-                        <input type="number" id="break-time" name="timer-time" step="1" min="1" value="5">
-                    </div>
-                </div>
-                <button id="submit-settings" class="btn">OK</button>
-            </div>
+        <div class="clock">25:00</div>
+        <div class="controll">
+          <button id="start-clock-btn" class="btn">Start</button>
+          <button id="stop-clock-btn" class="btn">Stop</button>
         </div>
+      </section>
 
-        <section class="todo_container">
-            <p>Time to focus!</p>
-            <h2>Tasks</h2>
-            <p>Left click to delete</p>
-            <div id="todos" class="todos"></div>
-            <div class="todo_panel">
-                <input id="input_todo" type="text" placeholder="What are you working on?">
-                <button id="add_todo" class="btn" type="submit">Add Todo</button>
-                <img class="close" src="close.svg" alt="" id="close_todo_panel">
+      <div class="settings">
+        <div class="settings-body">
+          <div class="header">
+            <img src="close.svg" alt="" class="close" id="close-settings" />
+            <p>Timer settings</p>
+          </div>
+          <p><strong>Time (minutes)</strong></p>
+          <div class="settings-time-row">
+            <div>
+              <label for="timer-time">Pomodoro</label>
+              <input
+                type="number"
+                id="timer-time"
+                name="timer-time"
+                step="1"
+                min="1"
+                value="25"
+              />
             </div>
-            <div class="add_todo_area">
-                 <img src="/plus.png" alt="" srcset=""> Add Task
+            <div>
+              <label for="break-time">Break</label>
+              <input
+                type="number"
+                id="break-time"
+                name="timer-time"
+                step="1"
+                min="1"
+                value="5"
+              />
             </div>
-        </section>
+          </div>
+          <button id="submit-settings" class="btn">OK</button>
+        </div>
+      </div>
 
-        
+      <section class="todo_container">
+        <p>Time to focus!</p>
+        <h2>Tasks</h2>
+        <p>Left click to delete</p>
+        <div id="todos" class="todos"></div>
+        <div class="todo_panel">
+          <input
+            id="input_todo"
+            type="text"
+            placeholder="What are you working on?"
+          />
+          <button id="add_todo" class="btn" type="submit">Add Todo</button>
+          <img class="close" src="close.svg" alt="" id="close_todo_panel" />
+        </div>
+        <div class="add_todo_area">
+          <img src="/plus.png" alt="" srcset="" /> Add Task
+        </div>
+      </section>
     </main>
-</body>
-
+  </body>
 </html>
